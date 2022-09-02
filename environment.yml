@@ -1,9 +1,13 @@
-# conda 
 name: bigdata-2022-2
 channels:
   - defaults
 dependencies:
   - python=3.9
+  - cudatoolkit=10.1
+  - cudnn=7.6
+  - mongodb
+  - mongo-tools
+  - redis
   - pip
   - pip:
-    - pip-tools
+      - pip-tools
