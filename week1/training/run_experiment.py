@@ -77,7 +77,6 @@ def main():
         lit_model = lit_model_class.load_from_checkpoint(
             args.load_checkpoint, args=args, model=model)
     else:
-
         lit_model = lit_model_class(args=args, model=model)
     logger = pl.loggers.TensorBoardLogger("training/logs")
 
