@@ -3,6 +3,10 @@ import json
 REDIS_HOST = 'localhost'
 REDIS_PORT = '6379'
 
+# issue in redis > 3.0 -> https://blog.actorsfit.com/a?ID=01050-279be1c8-1f8a-4704-9122-afe611843b1a
+
+# ref: w3resource.com/redis/redis-zrange-key-start-stop.php
+
 class StoreRedis():
 
     def __init__(self):
@@ -25,13 +29,16 @@ class StoreRedis():
             query = self.redis.zrangebyscore(
                 key, score, score)  # logn complexity
             if query == []:
-                self.redis.zadd(key, str(json.dumps(data)), score)
+                # self.redis.zadd(key, str(json.dumps(data)), score)
+                # self.redis.zadd(key, data, score)
+                self.redis.zadd(key, {str(json.dumps(data)): score})
             else:
                 if query == data:
                     print("completly repeated !!!!!!!!!! ")
                     pass
                 else:
-                    self.redis.zadd(key, str(json.dumps(data)), score)
+                    # self.redis.zadd(key, str(json.dumps(data)), score)
+                    self.redis.zadd(key, {str(json.dumps(data)): score})
         print("sent")
         return
 
@@ -56,4 +63,7 @@ if __name__ == '__main__':
             {"timestamp": "2", "user_id": "blabla2"},             
             {"timestamp": "3", "user_id": "blabla3"}])
 
-    print(store_redis.response("ttt"))
+    print(store_redis.response("ttt",1))
+
+
+
