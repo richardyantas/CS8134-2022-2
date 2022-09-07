@@ -12,3 +12,6 @@ torchvision
 torchmetrics
 pymongo
 redis
+# py2neo
+graphdatascience
+cassandra-driver

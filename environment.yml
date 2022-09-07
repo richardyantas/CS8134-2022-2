@@ -5,9 +5,9 @@ dependencies:
   - python=3.9
   - cudatoolkit=10.1
   - cudnn=7.6
-  - mongodb
-  - mongo-tools
-  - redis
+  # - mongodb
+  # - mongo-tools
+  # - redis
   - pip
   - pip:
       - pip-tools
